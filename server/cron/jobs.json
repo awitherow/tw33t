@@ -1,0 +1,10 @@
+{
+  "JOBS": [
+    {
+      "name": "Cron process 1",
+      "message": { "taskName": "EXAMPLE_TASK_NAME", "queue": "worker-queue" },
+      "cronTime": "30 * * * *",
+      "repeat": 1
+    }
+  ]
+}
