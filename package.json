@@ -1,7 +1,7 @@
 {
-  "name": "followscript",
+  "name": "tw33t",
   "version": "1.0.0",
-  "description": "automatic follower growth management",
+  "description": "tw33t like the elite",
   "main": "src/index.js",
   "author": "awitherow <au.witherow@gmail.com>",
   "license": "MIT",
