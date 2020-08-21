@@ -1,7 +1,7 @@
 import amqp from "amqp-connection-manager";
 import herokuConfig from "../config/heroku";
 
-const AMQP_URL = process.env.CLOUDAMQP_URL || herokuConfig.amqp;
+const AMQP_URL = process.env.CLOUDAMQP_URL || process.env.CLOUDAMQP_URL;
 
 if (!AMQP_URL) process.exit(1);
 
