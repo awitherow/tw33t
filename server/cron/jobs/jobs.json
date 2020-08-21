@@ -1,0 +1,13 @@
+{
+  "JOBS": [
+    {
+      "name": "Update Most Influential Followers List",
+      "message": {
+        "taskName": "updateInfluentialFollowers",
+        "queue": "worker-queue"
+      },
+      "cronTime": "30 * * * *",
+      "repeat": 1
+    }
+  ]
+}

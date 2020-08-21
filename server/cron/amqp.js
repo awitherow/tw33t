@@ -1,6 +1,8 @@
 import amqp from "amqp-connection-manager";
+import herokuConfig from "../config/heroku";
 
-const AMQP_URL = process.env.CLOUDAMQP_URL || "amqp://localhost";
+const AMQP_URL = process.env.CLOUDAMQP_URL || herokuConfig.amqp;
+
 if (!AMQP_URL) process.exit(1);
 
 export const spawnConnection = (cb) => {
@@ -13,7 +15,7 @@ export const spawnConnection = (cb) => {
 
     console.log("[AMQP] - Connected!");
 
-    Boolean(cb) && cb();
+    if (Boolean(cb)) cb();
   });
 
   connection.on("disconnect", (params) =>

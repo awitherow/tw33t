@@ -1,5 +1,5 @@
 import { CronJob } from "cron";
-import { JOBS } from "./jobs.json";
+import { JOBS } from "./jobs/jobs.json";
 import { spawnConnection } from "./amqp";
 
 const WORKER_QUEUE = "worker-queue"; // To consume from worker process

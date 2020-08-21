@@ -1,4 +1,3 @@
-import amqp from "amqp-connection-manager";
 import { spawnConnection } from "./amqp";
 
 const AMQP_URL = process.env.CLOUDAMQP_URL || "amqp://localhost";
