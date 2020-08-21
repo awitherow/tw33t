@@ -1,5 +1,6 @@
 import users from "../../config/users";
 import { sortArrayBy } from "../../utils/array_utils";
+import TwitterClient from "../../twitter/client";
 import Sequelize from "sequelize";
 import { Influencer } from "../../db/models";
 
