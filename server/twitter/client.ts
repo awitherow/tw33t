@@ -4,7 +4,7 @@ import { api, secret, token } from "../config/twitter";
 import { chunkArray } from "../utils/array_utils";
 
 class TwitterClient {
-  constructor(api, secret, token) {
+  constructor() {
     this.api = api;
     this.secret = secret;
     this.token = token;
@@ -53,8 +53,12 @@ class TwitterClient {
   };
 
   getFollowersProfileData = async () => {
+    // https://developer.twitter.com/en/docs/twitter-api/v1/accounts-and-users/follow-search-get-users/api-reference/get-users-lookup
+    // https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/overview/user-object
     const follwerIds = await this.getFollowerIds(userId);
     const userIds = chunkArray(followerIds, 100);
+
+    const followerProfiles = [];
 
     userIds.map((ids) => {
       let options = {
@@ -65,11 +69,30 @@ class TwitterClient {
         const response = await this.baseFetch(
           this.apiUrl("users/lookup.json", options)
         );
-        const json = await response.json();
-        return json.ids;
+        const users = await response.json();
+        followerProfiles.push(users);
       } catch (error) {
         console.error(error);
       }
     });
+
+    return followerProfiles;
+  };
+
+  getLatestTweets = async (id) => {
+    // https://developer.twitter.com/en/docs/twitter-api/v1/tweets/timelines/api-reference/get-statuses-user_timeline
+    const options = {
+      user_id: id,
+    };
+
+    try {
+      const response = await this.baseFetch(
+        this.apiUrl("statuses/user_timeline.json", options)
+      );
+      const tweets = await response.json();
+      return tweets;
+    } catch (error) {
+      console.error(error);
+    }
   };
 }
